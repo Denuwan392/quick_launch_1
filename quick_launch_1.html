@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickLaunch - Launch Your Idea Within 24H</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .countdown-number {
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    .timeline-step {
+      transition: all 0.3s ease;
+    }
+    .timeline-step:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Premium gradient animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 1.5rem;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: -1;
+    }
+    
+    /* Custom navigation styling */
+    .nav-item {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    .nav-item:hover::after {
+      width: 100%;
+    }
+    
+    /* Premium Process Section Styles */
+    .process-step {
+      position: relative;
+      padding: 2rem;
+      border-radius: 1rem;
+      background: white;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .process-step::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    /* Animated elements */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    /* Custom cursor effects */
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    
+    /* Premium CTA styling */
+    .premium-cta {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .premium-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .premium-cta:hover::before {
+      left: 100%;
+    }
+    
+    /* Glassmorphism effects */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Hover effects */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+    
+    /* Premium card styling */
+    .premium-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform, box-shadow;
+    }
+    .premium-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Custom bullet points */
+    .custom-bullet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    .custom-bullet::after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+    }
+    
+    /* Premium hover effect for buttons */
+    .btn-hover {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-hover::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn-hover:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Custom gradient text */
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Premium section spacing */
+    .section-spacing {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+    
+    /* Custom divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+      margin: 3rem 0;
+    }
+    
+    /* Premium testimonial styling */
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Custom avatar styling */
+    .avatar {
+      transition: all 0.3s ease;
+    }
+    .avatar:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Premium footer links */
+    .footer-link {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+    .footer-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Custom CTA animation */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .slide-in {
+      animation: slideIn 0.8s ease-out;
+    }
+    
+    /* Premium hover scale for images */
+    .hover-img-scale img {
+      transition: transform 0.5s ease;
+    }
+    .hover-img-scale:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Custom social icons */
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Premium button glow */
+    .btn-glow {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Custom navigation hover */
+    .nav-hover {
+      transition: all 0.3s ease;
+    }
+    .nav-hover:hover {
+      color: #3b82f6 !important;
+    }
+    
+    /* Premium card border */
+    .card-border {
+      position: relative;
+    }
+    .card-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    /* Custom timeline dots */
+    .timeline-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #3b82f6;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+    
+    /* Premium process step numbering */
+    .step-number {
+      font-weight: 900;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Custom section header */
+    .section-header {
+      position: relative;
+      display: inline-block;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      border-radius: 3px;
+    }
+    
+    /* Premium hover effect for cards */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Custom bullet list */
+    .bullet-list li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .bullet-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    }
+    
+    /* Premium CTA button */
+    .cta-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.8s;
+    }
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    /* Custom navigation active state */
+    .nav-active {
+      position: relative;
+    }
+    .nav-active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    }
+    
+    /* Premium section background */
+    .premium-bg {
+      background: linear-gradient(135deg, rgba(240, 249, 255, 0.3), rgba(237, 242, 255, 0.3));
+    }
+    
+    /* Custom hover scale for icons */
+    .hover-icon-scale svg {
+      transition: transform 0.3s ease;
+    }
+    .hover-icon-scale:hover svg {
+      transform: scale(1.2);
+    }
+    
+    /* Premium testimonial quote */
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 4rem;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+      color: rgba(59, 130, 246, 0.1);
+      font-family: Georgia, serif;
+    }
+    
+    /* Custom process connector */
+    .process-connector {
+      position: relative;
+      margin: 2rem 0;
+    }
+    .process-connector::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+    }
+    
+    /* Premium hover effect for links */
+    .link-hover {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .link-hover::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    .link-hover:hover::after {
+      width: 100%;
+    }
+    
+    /* Custom section padding */
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+    
+    /* Premium card shadow */
+    .card-shadow {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Custom timeline animation */
+    @keyframes timelineAnimation {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .timeline-animate {
+      animation: timelineAnimation 0.6s ease-out;
+    }
+    
+    /* Premium button text gradient */
+    .btn-gradient {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Custom hover effect for process steps */
+    .process-hover {
+      transition: all 0.3s ease;
+    }
+    .process-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Premium section border */
+    .section-border {
+      position: relative;
+    }
+    .section-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    }
+    .section-border::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    }
+    
+    /* Custom card hover effect */
+    .card-effect {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-effect:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Premium navigation styling */
+    .nav-style {
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .nav-style::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .nav-style:hover::after {
+      width: 100%;
+    }
+    
+    /* Custom process step animation */
+    @keyframes stepAnimation {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .step-animate {
+      animation: stepAnimation 0.7s ease-out;
+    }
+    
+    /* Premium CTA hover effect */
+    .cta-hover {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-hover::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.8s, height 0.8s;
+    }
+    .cta-hover:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+    
+    /* Custom section header animation */
+    @keyframes headerAnimation {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .header-animate {
+      animation: headerAnimation 0.8s ease-out;
+    }
+    
+    /* Premium card border animation */
+    @keyframes borderAnimation {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    .border-animate {
+      animation: borderAnimation 0.6s ease-out;
+    }
+    
+    /* Custom process connector animation */
+    @keyframes connectorAnimation {
+      0% { height: 0; }
+      100% { height: 100%; }
+    }
+    
+    .connector-animate::before {
+      animation: connectorAnimation 1s ease-out;
+    }
+    
+    /* Premium hover effect for testimonials */
+    .testimonial-hover {
+      transition: all 0.3s ease;
+    }
+    .testimonial-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Custom navigation animation */
+    @keyframes navAnimation {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .nav-animate {
+      animation: navAnimation 0.5s ease-out;
+    }
+    
+    /* Premium section fade in */
+    @keyframes sectionFadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    .section-fade-in {
+      animation: sectionFadeIn 1s ease-out;
+    }
+    
+    /* Custom card scale animation */
+    @keyframes cardScale {
+      0% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    
+    .card-scale {
+      animation: cardScale 0.4s ease-out;
+    }
+    
+    /* Premium button glow animation */
+    @keyframes glowAnimation {
+      0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+      100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    }
+    
+    .glow-animate {
+      animation: glowAnimation 2s infinite;
+    }
+    
+    /* Custom process step hover */
+    .step-hover {
+      transition: all 0.3s ease;
+    }
+    .step-hover:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Premium section background animation */
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .bg-animate {
+      background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #bae6fd, #38bdf8);
+      background-size: 400% 400%;
+      animation: bgAnimation 15s ease infinite;
+    }
+    
+    /* Custom timeline dot animation */
+    @keyframes dotAnimation {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    
+    .dot-animate {
+      animation: dotAnimation 0.5s ease-out;
+    }
+    
+    /* Premium hover effect for portfolio items */
+    .portfolio-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .portfolio-hover:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Custom section header glow */
+    .header-glow {
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Premium navigation hover effect */
+    .nav-glow {
+      transition: all 0.3s ease;
+    }
+    .nav-glow:hover {
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Custom process step border */
+    .step-border {
+      position: relative;
+    }
+    .step-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    /* Premium CTA text gradient */
+    .cta-gradient {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Custom section animation delay */
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
+    .delay-600 {
+      animation-delay: 0.6s;
+    }
+    .delay-700 {
+      animation-delay: 0.7s;
+    }
+    .delay-800 {
+      animation-delay: 0.8s;
+    }
+    .delay-900 {
+      animation-delay: 0.9s;
+    }
+    .delay-1000 {
+      animation-delay: 1s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <div class="text-black font-bold text-2xl tracking-tight">QuickLaunch</div>
+        </div>
+        <div class="hidden md:flex space-x-12">
+          <a href="#how-it-works" class="text-gray-700 hover:text-black font-medium transition-colors duration-200 nav-style nav-animate delay-100">How It Works</a>
+          <a href="#portfolio" class="text-gray-700 hover:text-black font-medium transition-colors duration-200 nav-style nav-animate delay-200">Portfolio</a>
+          <a href="#advantage" class="text-gray-700 hover:text-black font-medium transition-colors duration-200 nav-style nav-animate delay-300">Our Advantage</a>
+          <a href="#success" class="text-gray-700 hover:text-black font-medium transition-colors duration-200 nav-style nav-animate delay-400">Success Stories</a>
+        </div>
+        <button class="md:hidden text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left fade-in-up">
+          <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            Launch Your Idea
+            <span class="block gradient-text">Within 24H</span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+            Professional websites delivered in just one day. No waiting, no compromises — just results.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <button onclick="launchNow()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 btn-hover cta-button">
+              Launch Now
+            </button>
+            <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
+              See How It Works
+            </button>
+          </div>
+        </div>
+        <div class="relative hover-img-scale fade-in-up delay-200">
+          <div class="relative z-10 transform rotate-1 hover:rotate-2 transition-transform duration-500">
+            <img src="travel_2.png" alt="Website Preview" class="rounded-2xl shadow-2xl w-full"/>
+          </div>
+          <div class="absolute -top-4 -right-4 w-full h-full bg-gradient-to-bl from-blue-400/20 to-purple-500/20 rounded-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-24 bg-gradient-to-br from-gray-50 via-white to-purple-50 relative overflow-hidden section-fade-in">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/3"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-pink-100 to-orange-100 rounded-full filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center mb-20 header-animate">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 section-header">How We Deliver in 24 Hours</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-4">Our revolutionary process combines cutting-edge technology with expert craftsmanship to deliver premium websites at unprecedented speed.</p>
+        <div class="inline-flex items-center px-6 py-3 bg-white rounded-full shadow-lg border border-gray-100 mt-6 glass-effect">
+          <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 animate-pulse"></div>
+          <span class="text-gray-700 font-medium">Premium Process • Guaranteed Delivery • 24/7 Support</span>
+        </div>
+      </div>
+      
+      <!-- Process steps in a row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <!-- Step 1 -->
+        <div class="process-step card-border border-animate fade-in-up delay-300">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mb-6 text-white text-2xl font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Strategic Foundation</h3>
+          <p class="text-gray-600 text-center mb-6">We begin with a deep dive into your vision, target audience, and business goals.</p>
+          <ul class="space-y-3 bullet-list text-sm">
+            <li>Strategic consultation with senior web architect</li>
+            <li>Custom design system development</li>
+            <li>UX/UI wireframe approval</li>
+            <li>Competitive analysis & market positioning</li>
+            <li>Conversion optimization strategy</li>
+          </ul>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="process-step card-border border-animate fade-in-up delay-500">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mb-6 text-white text-2xl font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c-.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Premium Development</h3>
+          <p class="text-gray-600 text-center mb-6">Our senior developers and designers craft your website with pixel-perfect precision.</p>
+          <ul class="space-y-3 bullet-list text-sm">
+            <li>Hand-coded with premium frameworks</li>
+            <li>SEO-optimized from the ground up</li>
+            <li>Performance tuned for 90+ PageSpeed score</li>
+            <li>Cross-browser compatibility testing</li>
+            <li>Mobile-first responsive design</li>
+          </ul>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="process-step card-border border-animate fade-in-up delay-700">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mb-6 text-white text-2xl font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Seamless Launch</h3>
+          <p class="text-gray-600 text-center mb-6">Your website goes live with a comprehensive handover and premium support.</p>
+          <ul class="space-y-3 bullet-list text-sm">
+            <li>Professional launch with DNS configuration</li>
+            <li>30-day premium support & optimization</li>
+            <li>Conversion tracking & analytics setup</li>
+            <li>Content management training</li>
+            <li>Post-launch performance review</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Premium CTA at bottom of section -->
+      <div class="text-center mt-20 slide-in delay-900">
+        <div class="inline-flex items-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-2xl transform hover:scale-105 transition-transform duration-300 cursor-pointer cta-hover" onclick="launchNow()">
+          <span>Start Your Premium Launch</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <p class="text-gray-500 mt-4 text-sm">Join 500+ businesses who launched with premium speed and quality</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-20 bg-white section-padding">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 header-animate">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-header">Our Portfolio</h2>
+        <p class="text-xl text-gray-600">Exceptional websites delivered in record time.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="feature-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 portfolio-hover card-scale delay-100">
+          <img src="https://placehold.co/400x300/f1f5f9/334155?text=E-commerce+Store" alt="E-commerce Store" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Bloom & Grow</h3>
+            <p class="text-gray-600 mb-4">Premium e-commerce platform with integrated payment processing and inventory management.</p>
+            <div class="flex justify-between text-sm text-gray-500">
+              <span>Launched in 22h 17m</span>
+              <span>Conversion +340%</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 portfolio-hover card-scale delay-300">
+          <img src="https://placehold.co/400x300/f1f5f9/334155?text=SaaS+Platform" alt="SaaS Platform" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">FlowMetrics</h3>
+            <p class="text-gray-600 mb-4">SaaS analytics dashboard with real-time data visualization and user management.</p>
+            <div class="flex justify-between text-sm text-gray-500">
+              <span>Launched in 23h 42m</span>
+              <span>Retention +280%</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 portfolio-hover card-scale delay-500">
+          <img src="https://placehold.co/400x300/f1f5f9/334155?text=Portfolio+Site" alt="Portfolio Site" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Studio Nova</h3>
+            <p class="text-gray-600 mb-4">Creative portfolio with immersive gallery and client inquiry system.</p>
+            <div class="flex justify-between text-sm text-gray-500">
+              <span>Launched in 19h 8m</span>
+              <span>Inquiries +410%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Advantage Section -->
+  <section id="advantage" class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 section-padding">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 header-animate">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-header">Our Unmatched Advantage</h2>
+        <p class="text-xl text-gray-600">Speed, quality, and results that redefine what's possible.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-effect card-scale delay-100">
+          <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Lightning Speed</h3>
+          <p class="text-gray-600">24-hour delivery guarantee. We've perfected our process to deliver fast without cutting corners.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-effect card-scale delay-300">
+          <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Premium Quality</h3>
+          <p class="text-gray-600">Hand-crafted websites with custom design, responsive layouts, and optimized performance.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-effect card-scale delay-500">
+          <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Conversion-Focused</h3>
+          <p class="text-gray-600">We design for results — optimized layouts, compelling CTAs, and proven conversion strategies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section id="success" class="py-20 bg-white section-padding">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 header-animate">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-header">Client Success Stories</h2>
+        <p class="text-xl text-gray-600">Real results from our clients.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg testimonial-hover card-scale delay-100">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold avatar">AS</div>
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-900">Alex Simmons</h4>
+              <p class="text-gray-600 text-sm">Founder, TechFlow</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic mb-4">"I needed a website for my SaaS product urgently. QuickLaunch delivered a stunning, fully-functional site in just 21 hours. Our conversion rate increased by 280% in the first week!"</p>
+          <div class="flex text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg testimonial-hover card-scale delay-300">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold avatar">MJ</div>
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-900">Maya Johnson</h4>
+              <p class="text-gray-600 text-sm">Creative Director, Bloom & Grow</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic mb-4">"As a designer, I'm picky about quality. QuickLaunch exceeded my expectations with their attention to detail and rapid turnaround. Our online sales increased 3.4x after launch!"</p>
+          <div class="flex text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 header-animate">Ready to Launch Your Idea?</h2>
+      <p class="text-xl mb-8 opacity-90 fade-in-up delay-200">Join hundreds of entrepreneurs and businesses who launched their websites in just 24 hours.</p>
+      <button onclick="launchNow()" class="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center btn-hover cta-button glow-animate">
+        Launch Now
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <p class="mt-6 text-sm opacity-75 fade-in-up delay-400">No long contracts. 100% satisfaction guaranteed.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+          <div class="text-white text-2xl font-bold mb-4">QuickLaunch</div>
+          <p class="mb-4 text-gray-400">Professional websites delivered within 24 hours. Turn your idea into reality — fast.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 social-icon">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 social-icon">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 social-icon">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#how-it-works" class="hover:text-white transition-colors duration-200 footer-link">How It Works</a></li>
+            <li><a href="#portfolio" class="hover:text-white transition-colors duration-200 footer-link">Portfolio</a></li>
+            <li><a href="#advantage" class="hover:text-white transition-colors duration-200 footer-link">Our Advantage</a></li>
+            <li><a href="#success" class="hover:text-white transition-colors duration-200 footer-link">Success Stories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4">Contact</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              ddenuwan38@gmail.com
+            </li>
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              +9477 50 83 549
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-gray-400 text-center">
+        &copy; 2023 QuickLaunch. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Launch Now button functionality
+    function launchNow() {
+      alert('Thank you for your interest! Our team will contact you within 15 minutes to discuss your project.');
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements with fade-in-up class
+    document.querySelectorAll('.process-step, .feature-card, .bg-animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
