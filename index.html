@@ -854,36 +854,98 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative py-20 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="text-center lg:text-left fade-in-up">
-          <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            Launch Your Idea
-            <span class="block gradient-text">Within 24H</span>
-          </h1>
-          <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-            Professional websites delivered in just one day. No waiting, no compromises — just results.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button onclick="launchNow()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 btn-hover cta-button">
-              Launch Now
-            </button>
-            <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
-              See How It Works
-            </button>
+<section class="relative py-8 md:py-16 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <!-- Background Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
+      <div class="relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
+          
+          <!-- Left Content Area -->
+          <div class="p-8 lg:p-12 flex flex-col justify-center relative">
+            
+            <!-- Step Indicators -->
+            <div class="absolute left-6 top-8 flex flex-col space-y-4">
+              <div class="w-8 h-8 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-sm font-semibold text-gray-600">
+                1
+              </div>
+              <div class="w-8 h-8 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-sm font-semibold text-gray-600">
+                2
+              </div>
+              <div class="w-8 h-8 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-sm font-semibold text-gray-600">
+                3
+              </div>
+            </div>
+            
+            <!-- Text Content -->
+            <div class="pl-16">
+              <p class="text-sm text-gray-600 uppercase tracking-wider mb-4">
+                BUILD. LAUNCH. GROW.
+              </p>
+              <h1 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                Launch Your Website
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                  in Just 24 Hours
+                </span>
+              </h1>
+              <p class="text-gray-600 mb-8">
+                QuickLaunch turns your idea into a live, conversion-ready landing page within a single day.  
+                No delays. No hassle. Just results that help your business go online—fast and beautifully.
+              </p>
+              
+              <!-- CTA Button -->
+              <button onclick="launchNow()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 btn-hover cta-button relative overflow-hidden group inline-flex items-center">
+                <span class="relative z-10">Launch Now</span>
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="relative hover-img-scale fade-in-up delay-200">
-          <div class="relative z-10 transform rotate-1 hover:rotate-2 transition-transform duration-500">
-            <img src="travel_2.png" alt="Website Preview" class="rounded-2xl shadow-2xl w-full"/>
+          
+          <!-- Right Image Area -->
+          <div class="relative">
+            <img src="https://i.pinimg.com/1200x/31/45/92/31459230dd8df564e51dde61226b1995.jpg" alt="QuickLaunch Website Preview" class="w-full h-full object-cover">
+            
+            <!-- Know More Card -->
+            <div class="absolute bottom-8 right-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-semibold text-gray-900">Why QuickLaunch?</h3>
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="flex space-x-2">
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">Fast • Premium • Conversion-Ready</p>
+                  <p class="text-xs text-gray-600">Go from idea to live website in 24 hours with QuickLaunch.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="absolute -top-4 -right-4 w-full h-full bg-gradient-to-bl from-blue-400/20 to-purple-500/20 rounded-2xl"></div>
+          
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- How It Works Section -->
   <section id="how-it-works" class="py-24 bg-gradient-to-br from-gray-50 via-white to-purple-50 relative overflow-hidden section-fade-in">
